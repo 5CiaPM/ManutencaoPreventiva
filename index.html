@@ -171,7 +171,7 @@
             <textarea id="obs6" class="obs" maxlength="300" placeholder="Digite a observação"></textarea>
         </div>
 
-        <a id="emailLink" href="mailto:2bpmi5ciap4@policiamilitar.sp.gov.br?subject=Relatório de Manutenção Preventiva" style="display:none;">Enviar Email</a>
+        <a id="emailLink" href="mailto:juninhosouza810@gmail.com?subject=Relatório de Manutenção Preventiva" style="display:none;">Enviar Email</a>
         <button class="btn" onclick="enviarDados()">Enviar</button>
 
         <div id="lista-manutencao"></div>
@@ -195,43 +195,28 @@
             for (let i = 1; i <= 6; i++) {
                 let obsTexto = document.getElementById(`obs${i}`).value;
                 if (obsTexto.trim()) {
-                    listaObservacoes += `<p><strong>Observação:</strong> ${obsTexto}</p>`;
+                    listaObservacoes += `- Observação: ${obsTexto}\n`;
                 }
             }
 
-            let lista = document.getElementById("lista-manutencao");
-            lista.innerHTML += `
-                <div>
-                    <p><strong>Data/Hora:</strong> ${dataHora}</p>
-                    <p><strong>Viatura:</strong> ${prefixoViatura}</p>
-                    <p><strong>KM Atual:</strong> ${kmAtual}</p>
-                    <p><strong>KM Troca Óleo:</strong> ${kmTrocaOleo}</p>
-                    <p><strong>Motorista:</strong> ${graduacao}</p>
-                    ${listaObservacoes}
-                    <hr>
-                </div>
-            `;
-
-            // Montando o corpo do e-mail
-            let emailLink = document.getElementById("emailLink");
             let emailBody = `
-                Relatório de Manutenção Preventiva:
-                \nData/Hora: ${dataHora}
-                \nViatura: ${prefixoViatura}
-                \nKM Atual: ${kmAtual}
-                \nKM Troca Óleo: ${kmTrocaOleo}
-                \nMotorista: ${graduacao}
-                \n\nObservações:
-                ${listaObservacoes}
-            `;
+Relatório de Manutenção Preventiva:
 
-            // Atualizando o href do link para incluir as informações
-            emailLink.href = `mailto:2bpmi5ciap4@policiamilitar.sp.gov.br?subject=Relatório de Manutenção Preventiva&body=${encodeURIComponent(emailBody)}`;
-            
-            // Abrir o cliente de e-mail
+Data/Hora: ${dataHora}
+Viatura: ${prefixoViatura}
+KM Atual: ${kmAtual}
+KM Troca Óleo: ${kmTrocaOleo}
+Motorista: ${graduacao}
+
+Observações:
+${listaObservacoes}
+`;
+
+            let emailLink = document.getElementById("emailLink");
+            emailLink.href = `mailto:juninhosouza810@gmail.com?subject=Relatório de Manutenção Preventiva&body=${encodeURIComponent(emailBody)}`;
             emailLink.click();
 
-            alert("Dados inseridos com sucesso!");
+            alert("Dados enviados com sucesso!");
         }
     </script>
 
